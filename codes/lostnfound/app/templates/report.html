@@ -1,0 +1,86 @@
+	<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/dashboard.css')}}">
+        <style>
+                body{margin:0px 0px;padding:0px 0px; background-color:#f2f2f2;}
+        </style>
+</head>
+<body>
+        <div class="title" style="height:60px; width:100%; background-color:#000; margin-left:0px; margin-top:0px; float:left; position:relative;">
+	   <span id="name" style="margin-left:300px; top:5px; font-size:250%; color:#f2f2f2; position:relative;">
+                LOSTandFOUND
+           </span>
+	   <ul class="nav pull-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu pull-right">
+			 <li><a onclick="logout()">Log out</a></li>
+  			</ul>
+		</li>
+	   </ul>
+	</div>
+	<div class="center_container">
+	    <div id="left_sidebar">
+		<div id="view_links">
+			<br />
+			<br />
+			<br />
+			<br />
+			<form action="http://127.0.0.1:5000/report" method="POST">
+			CATEGORY:<select name="CATEGORY">
+  <option value="WATCH" >Watch</option>
+  <option value="PEN">Pen</option>
+  <option value="USB" >Usb</option>
+  <option value="BOOK">Book</option>
+  <option value="COMPUTER ACCESSORIES">Computer accessories</option>
+  <option value="KEYCHAIN">Keychain</option>
+  <option value="EARPHONES">Earphones</option>
+  <option value="OTHERS">Others</option>
+				</select>
+				<br/>
+				<br/>
+				<br/>
+				BRAND:<input type='text' name="BRAND" />
+				
+				<br/>
+				<br/>
+				<br/>
+				DESCRIPTION:<input type='text' name="DESCRIPTION"/>
+				<br/>
+				<br/>
+				<br/>
+				STATE:<select name="STATUS">
+ 				<option value="ACTIVE">ACTIVE</option>
+ 					
+				</select>
+				<br/>
+				<br/>
+				<br/>
+				<input type="submit" value="submit" onclick="sub()" />
+				<br/>
+				<br/>
+			</form>
+			<br />
+			<br />
+			<br />
+			<br />
+			
+	<script>
+		var logout = function(){
+			alert('loged out successfully')
+			$.get('/logout',function(response){console.log(response);window.location="http://127.0.0.1:5000/homepage";});
+		} 
+		
+	</script>
+</body>
+</html>

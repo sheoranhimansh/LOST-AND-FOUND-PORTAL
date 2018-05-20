@@ -1,0 +1,54 @@
+* Introduction
+this file briefly describes the details of the project ,its features ,its functionalities and database model
+
+* Description of Model
+** USER
+ In this, we are first taking name,email,password from user, setting email as primary key.
+	Using this we are performing following functionalities:
+	1)Registering the user for accessing the portal.
+	2)Logging In the user for accessing the portal(if registered).
+	3)Logging Out the user from the portal.
+** LOST
+In this, we are taking query along description from user along with their email using foreign key. Using this we are performing following functionaities:
+	1)Adding Lost items
+	2)Deleting Lost items
+	3)Claiming Lost items.
+** FOUND
+In this, we are taking query along with description from user along with their email using foreign key.
+	Using this we are performing following functionalities:
+	1)Adding the respective Found items
+	2)Deleting Found items
+	3)Approving Found items (if claimed).
+** NEW(REPORT)
+In this, we are having fields like status and lost item. Using this we are performing following functionalities:
+	1)Showing the claimed and approved person.
+	2)Adding the respective lost and found items.
+
+* Data Intrigrity
+For respective entities in our database, Data Integerity is maintained for validation through the use of various error-checking methods and validation procedures.
+
+Error messages are thrown if the credentials are proven false or incomplete.
+
+For Report , for updating status,adding the respective lost and found items, current owner etc.. we are making a seperate database which can be viewed in view past exchange in main html
+
+For adding,deleting,claiming the Lost items, we are validaing and checking for errors in the backend in the controllers of Lost , here is the link to it: lost-n-found/app/lost/controllers.py.
+
+For adding,deleting,approving(if claimed) the Found items, we are validating and checking for errors in the backend in the controllers of Found, here is the link to it: lost-n-found/app/found/controllers.py.
+
+* Redundancy prevention
+The problem of redundancy is tackeled using the concept of foreign key.We have applied foreign key in LOST, FOUND, NEW models respectively.
+
+Using this, the main problem of clearing the data of that user from new table,found table,lost table,notifications etc..  is solved pretty easily.
+
+Using foreign key, any change in the primary key is propagated to the foreign key leading to the updating the database.
+
+So for example if a user has deleted the query, then that change in database invoked by user has been propagated to respective tables using the foreign key by linking them to user's email. Thereby producing the desired results and bringing suitable changes in tables and databases.
+
+* SecurityFeatures
+Security Feauters include:
+1) Data Validation
+
+
+1. Data Validation:
+	Data Validation is done at jquery part and backend part. We have checked for data integrity and check for errors at volatile junctures.
+

@@ -1,0 +1,114 @@
+	<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/dashboard.css')}}">
+        <style>
+                body{margin:0px 0px;padding:0px 0px; background-color:#f2f2f2;}
+        </style>
+</head>
+<body>
+        <div class="title" style="height:60px; width:100%; background-color:#000; margin-left:0px; margin-top:0px; float:left; position:relative;">
+	   <span id="name" style="margin-left:300px; top:5px; font-size:250%; color:#f2f2f2; position:relative;">
+                LOSTandFOUND
+           </span>
+	   <ul class="nav pull-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu pull-right">
+			 <li><a onclick="logout()">Log out</a></li>
+  			</ul>
+		</li>
+	   </ul>
+	</div>
+	<div class="center_container">
+	    <div id="left_sidebar">
+		<div id="view_links">
+			<br />
+			<br />
+			<br />
+			<br />
+	  <center>
+
+      <table border="5">
+         <thead>
+            <tr>
+               <th><h3>USER_USERNAME</h3></th>
+               <th><h3>CATEGORY</h3></th>
+               <th><h3>BRAND</h3></th>
+               <th><h3>DESCRIPTION</h3></th>
+           		<th><h3>DELETE </h3></th>
+            </tr>
+         </thead>
+         
+         <tbody>
+            {% for i in tem %}
+               <tr>
+                  <td>{{ i.user_username }}</td>
+                  <td>{{ i.category }}</td>
+                  <td>{{ i.brand }}</td>
+                  <td>{{ i.discription }}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+    		<form action="http://127.0.0.1:5000/debu" method="POST">
+    
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  <button type="submit" name="yolo"  value="{{i.id}}" onclick="defi()" class="btn btn-primary">DELETE</button>
+
+  </td>
+</form>  
+  </tr>
+            {% endfor %}
+
+
+            
+
+                </tbody>
+
+      </table>
+
+
+  <!--   <input type="submit" value="Submit" onclick="sub()">-->
+          
+      </center>
+   </form>
+			<br />
+			<br />
+			<br />
+			<br />
+			
+	<script>
+		var logout = function(){
+			alert('loged out successfully')
+			$.get('/logout',function(response){console.log(response);window.location="http://127.0.0.1:5000/homepage";});
+		
+		} 
+
+		var sub = function(){
+			alert('final show')
+			//window.location="http://127.0.0.1:5000/addfound";
+			$.get('/show',function(response){console.log(response);window.location="http://127.0.0.1:5000/show";});
+		}
+
+		var defi = function(){
+			alert('deleting this found')
+			$.ajax({
+				url:'http://127.0.0.1:5000/debu',
+				method:'GET',
+				data:{yolo:'yes'},
+				success:function(response)
+				{
+					console.log(response);
+				},
+			});
+		}	
+		
+	</script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+<!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+        <link rel= "stylesheet" type= "text/css" href="{{ url_for('static', filename='styles/dashboard.css')}}">
+        <style>
+                body{margin:0px 0px;padding:0px 0px; background-color:#f2f2f2;}
+        </style>
+</head>
+<body>
+        <div class="title" style="height:60px; width:100%; background-color:#000; margin-left:0px; margin-top:0px; float:left; position:relative;">
+	   <span id="name" style="margin-left:300px; top:5px; font-size:250%; color:#f2f2f2; position:relative;">
+                LOSTandFOUND
+           </span>
+	   <ul class="nav pull-right">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ user.username }}
+				<b class="caret"></b>
+			</a>
+			<ul class="dropdown-menu pull-right">
+			 <li><a onclick="logout()">Log out</a></li>
+  			</ul>
+		</li>
+	   </ul>
+	</div>
+	<div class="center_container">
+	    <div id="left_sidebar">
+		<div id="view_links">
+		<h2 style="color: red">CLAIM ONLY IF IT YOURS</h2> 
+
+<form action="http://127.0.0.1:5000/relation" method="POST">
+	  
+      <table border='3'>
+         <thead>
+            <tr>
+               <th><h3>USERNAME</h3></th>
+               <th><h3>EMAIL</h3></th>
+               <th><h3>PHONE NUMBER</h3></th>
+               <th><h3>CATEGORY</h3></th>
+               <th><h3>BRAND</h3></th>
+               <th><h3>STATUS </h3></th>
+               
+            </tr>
+         </thead>
+         
+         <tbody>
+    {% for i in a %}
+              
+   
+               <tr>
+                  <td>{{ i.username }}</td>
+                  <td>{{ i.email }}</td>
+                  <td>{{ i.mobile }}</td>
+                  
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ i.category }}</td>
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ i.brand }}</td>
+                  <td>{{ i.status }}</td>
+                  
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                  <!--<td> <input type="checkbox" name="things" id="id_{{i.user_username}}"  value="{{i.user_username}}" multiple="multiple" > CLAIM </td>-->           
+                   
+                   <input type="checkbox"  name="thins"   value="{{i.mix}}" > <h5 style="color: blue">CLAIM</h5> 
+                   </td>           
+                  <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                   <input type="checkbox"  name="thin"  id='mycheck' value="{{i.mix}}"  > <h5 style="color: blue">RESOLVED</h5> 
+                   </td>           
+                  
+                 
+                  </tr>
+    {% endfor %}         
+                </tbody>
+      </table>
+<center>
+<input type="submit" value="submit" > &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</center>     
+    </form>  
+<script>
+		var logout = function(){
+			alert('loged out successfully')
+			$.get('/logout',function(response){console.log(response);window.location="http://127.0.0.1:5000/homepage";});
+		}
+    var sub = function(){
+      alert('okay sir thanks for visiting our site')
+      //window.location="http://127.0.0.1:5000/addfound";
+     }  
+    var ok = function(){
+      alert('yolo')
+    $.get('/relation',function(response){console.log(response);window.location='http://127.0.0.1:5000/relation';});
+      //window.location="http://127.0.0.1:5000/addfound";
+     }  
+     
+</script>
+</body>
+
+</html>
