@@ -1,6 +1,6 @@
 # lostNfound
 
-Author: Kartik garg, Lovish narang, Ronak aghera
+Author: Kartik garg, Lovish narang, Himansh Sheoran
 
 Mentor: Jerin philip
 
